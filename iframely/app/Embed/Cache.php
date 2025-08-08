@@ -59,7 +59,6 @@ class Cache
         $cacheTime = get_post_meta($post_ID, $time, true);
 
         if (!$cacheTime || (time() - $cacheTime > $cacheTtl)) {
-            $wp_embed->usecache = false;
             delete_post_meta($post_ID, $time);
             delete_post_meta($post_ID, $key);
             return $cacheTtl;
@@ -71,7 +70,7 @@ class Cache
     public static function getTtlPresets(): array
     {
         return [
-            MONTH_IN_SECONDS * 30 => __('1 month', 'iframely'),
+            MONTH_IN_SECONDS => __('1 month', 'iframely'),
             WEEK_IN_SECONDS * 3 => __('3 weeks', 'iframely'),
             WEEK_IN_SECONDS * 2 => __('2 weeks', 'iframely'),
             WEEK_IN_SECONDS => __('1 week', 'iframely'),
